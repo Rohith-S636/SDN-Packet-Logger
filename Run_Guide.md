@@ -138,6 +138,51 @@ dpctl dump-flows
 
 * Look for actions=FLOOD
 * Packet counters
+## ⚠️ Note on Flow Table Output
+
+In this project, the controller uses **reactive packet forwarding with flooding (OFPP_FLOOD)**.
+
+Because of this behavior:
+
+* The switch may **not store persistent flow entries**
+* Flow entries can be **temporary or optimized internally by Open vSwitch**
+* As a result, the command:
+
+```
+ovs-ofctl dump-flows s1
+```
+
+may sometimes show **no entries (blank output)**
+
+---
+
+## ✅ Important Clarification
+
+This is **expected behavior** and does NOT indicate an error.
+
+The correctness of the system should instead be verified using:
+
+* Successful connectivity (`pingall → 0% dropped`)
+* Real-time controller logs showing packet details
+* Log file (`packet_log.txt`) storing captured packets
+
+---
+
+## 🎯 Reason
+
+The controller operates in **reactive mode**, where:
+
+* Each packet is sent to the controller
+* The controller processes and forwards it dynamically
+* Instead of relying on long-lived flow rules
+
+---
+
+## 🎤 Demo Explanation
+
+> “Since the controller uses reactive forwarding with flooding, flow entries may not persist in the switch. Packet handling is done dynamically by the controller, which is why the flow table can appear empty.”
+
+---
 
 # 🎯 COMPLETE DEMO FLOW
 * Start POX Controller (Terminal 1)
