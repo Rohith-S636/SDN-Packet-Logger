@@ -73,7 +73,7 @@ packet_logger.py  __init__.py
 cd pox
 ./pox.py log.level --DEBUG openflow.of_01 ext.packet_logger
 ```
-📸 Screenshot 2:
+📸 Screenshot 1:
 ```bash
 "Packet Logger Started"
 "Listening on 6633"
@@ -87,7 +87,7 @@ sudo mn -c
 sudo mn --custom topology.py --topo mytopo --controller=remote
 ```
 
-📸 Screenshot 3: Mininet topology created
+📸 Screenshot 2: Mininet topology created
 
 # 🧪 STEP 7: Test Connectivity
 
@@ -101,7 +101,7 @@ Expected:
 0% dropped
 ```
 
-📸 Screenshot 4 (IMPORTANT)
+📸 Screenshot 3 (IMPORTANT)
 
 # 🔁 STEP 8: Generate Traffic
 
@@ -109,7 +109,7 @@ Expected:
 ```bash
 h1 ping h2
 ```
-📸 Screenshot 5: Ping running
+📸 Screenshot 4: Ping running
 
 # 🖥️ STEP 9: View Controller Logs
 
@@ -119,14 +119,14 @@ You will see:
 
 ICMP | MAC: ... | IP: 10.0.0.1 -> 10.0.0.2
 ```
-📸 Screenshot 6 (CORE OUTPUT)
+📸 Screenshot 5 (CORE OUTPUT)
 
 # 📂 STEP 10: View Log File
 ## 🔵 Terminal 3 (OPTIONAL)
 ```bash
 cat ~/SDN-Packet-Logger/pox/logs/packet_log.txt
 ```
-📸 Screenshot 7: Stored logs
+📸 Screenshot 6: Stored logs
 
 # 📊 STEP 11: View Flow Table
 
@@ -134,7 +134,7 @@ cat ~/SDN-Packet-Logger/pox/logs/packet_log.txt
 ```bash
 dpctl dump-flows
 ```
-📸 Screenshot 8:
+📸 Screenshot 7:
 
 * Look for actions=FLOOD
 * Packet counters
@@ -147,7 +147,7 @@ dpctl dump-flows
 * Show logs (Terminal 1)
 * Show flow table (Terminal 2)
 * Show log file (Terminal 3)
-* 
+
 # 🧠 DEMO EXPLANATION 
 
 The POX controller captures PacketIn events, extracts MAC and IP headers, identifies protocol types such as ICMP, logs the data in real-time, and forwards packets using OpenFlow flooding.
